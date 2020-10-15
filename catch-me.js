@@ -1,19 +1,19 @@
 const holes = document.querySelectorAll('.hole');
 const hols = document.querySelectorAll('.hol');
-  const scoreBoard = document.querySelector('.score');
-  const moles = document.querySelectorAll('.mole');
-  const mols = document.querySelectorAll('.mol');
-  const welcome =document.getElementById('welcome');
+const scoreBoard = document.querySelector('.score');
+const moles = document.querySelectorAll('.mole');
+const mols = document.querySelectorAll('.mol');
+const welcome =document.getElementById('welcome');
   let lastHole;
   let lastHol;
   let timeUp = false;
   let score = 0;
 
-  function randomTime(min, max) {
+function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
   }
 
-  function randomHole(holes) {
+function randomHole(holes) {
     const idx = Math.floor(Math.random() * holes.length);
     const hole = holes[idx];
     if (hole === lastHole) {
@@ -23,7 +23,7 @@ const hols = document.querySelectorAll('.hol');
     return hole;
   }
 
-  function peep() {
+function peep() {
     const time = randomTime(200, 1000);
     const hole = randomHole(holes);
     hole.classList.add('up');
@@ -33,16 +33,29 @@ const hols = document.querySelectorAll('.hol');
     }, time);
   }
 
-  function startGame() { 
+
+function startGame() { 
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
     peep();
     setTimeout(() => timeUp = true, 50000);
     welcome.style.display='none';
+   
   }
 
-  function bonk(e) {
+
+function stoptGame() { 
+    scoreBoard.textContent = 0;
+    timeUp = false;
+    score = 0;
+    peep();
+    setTimeout(() => timeUp = true,0);
+    welcome.style.display='none';
+  }
+
+
+function bonk(e) {
     if(!e.isTrusted) return; // cheater!
     score++;
     this.parentNode.classList.remove('up');
@@ -50,7 +63,7 @@ const hols = document.querySelectorAll('.hol');
   }
 
 
-  function randomHol(hols) {
+function randomHol(hols) {
     const idx = Math.floor(Math.random() * hols.length);
     const hol = hols[idx];
     if (hol === lastHol) {
