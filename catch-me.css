@@ -50,7 +50,7 @@ html {
   
   .hole {
     flex: 1 0 33.33%;
-    overflow: scroll;
+    overflow: hidden;
     position: relative;
   }
   
